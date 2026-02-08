@@ -1,16 +1,20 @@
-## Hi there 👋
+### Portfolio professionnel
 
-<!--
-**kemichenassim/kemichenassim** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+## Présentation
+Ce dépôt contient mon portfolio professionnel.
+Il présente mon profil, mes compétences et un projet réalisé dans le cadre de ma formation.
 
-Here are some ideas to get you started:
+## Compétences
+- Python
+- SQL
+- Analyse et préparation de données
+- Visualisation de données
+- Machine learning
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## Projet principal
+- Projet en analyse de données et intelligence artificielle et communication en etreprise 
+(https://github.com/kemichenassim/kemichenassim/edit/main/README.md))
+
+## Objectif
+Présenter de manière claire et structurée mon travail et mes compétences.
+
