@@ -26,7 +26,11 @@
 					pour transformer des données brutes en informations utiles à la prise de décision.
 				</p>
 				<ul class="actions">
-					<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Voir le portfolio</a></li>
+					<li>
+						<a href="#header" class="button icon solid solo fa-arrow-down scrolly">
+							Voir le portfolio
+						</a>
+					</li>
 				</ul>
 			</div>
 
@@ -35,7 +39,7 @@
 				<a href="index.html" class="logo">Portfolio</a>
 			</header>
 
-			<!-- Nav -->
+			<!-- Navigation -->
 			<nav id="nav">
 				<ul class="links">
 					<li class="active"><a href="index.html">Accueil</a></li>
@@ -45,102 +49,119 @@
 				</ul>
 				<ul class="icons">
 					<li><a href="#" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-					<li><a href="https://github.com/kemichenassim" class="icon brands fa-github" target="_blank" rel="noopener"><span class="label">GitHub</span></a></li>
-					<li><a href="mailto:kemichenassim486@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+					<li>
+						<a href="https://github.com/kemichenassim"
+						   class="icon brands fa-github"
+						   target="_blank"
+						   rel="noopener">
+							<span class="label">GitHub</span>
+						</a>
+					</li>
+					<li>
+						<a href="mailto:kemichenassim486@gmail.com"
+						   class="icon solid fa-envelope">
+							<span class="label">Email</span>
+						</a>
+					</li>
 				</ul>
 			</nav>
 
 			<!-- Main -->
 			<div id="main">
 
-				<!-- Featured Post -->
+				<!-- Projet principal -->
 				<article class="post featured" id="projects">
 					<header class="major">
 						<span class="date">Décembre 2025</span>
 						<h2>
-							<a href="#">
-								Classification de SMS Spam<br />
-								Prétraitement Textuel & Apprentissage Profond
-							</a>
+							Classification de SMS Spam<br />
+							Prétraitement Textuel & Apprentissage Profond
 						</h2>
 						<p>
 							Projet de classification binaire (Ham vs Spam) avec un pipeline complet :
-							nettoyage du texte, tokenisation, lemmatisation, vectorisation TF-IDF,
-							réduction de dimension (autoencodeur) et embeddings BERT pour une compréhension sémantique.
+							nettoyage, tokenisation, lemmatisation, vectorisation TF-IDF,
+							réduction de dimension (autoencodeur) et embeddings BERT.
 						</p>
 					</header>
 
-					<!-- IMAGE PRINCIPALE CONSERVÉE -->
+					<!-- Image principale conservée -->
 					<a href="#" class="image main">
 						<img src="images/picc01.jpg" alt="Projet SMS Spam" />
 					</a>
 
 					<ul class="actions special">
-						<li><a href="https://github.com/kemichenassim" class="button large" target="_blank" rel="noopener">Voir sur GitHub</a></li>
+						<li>
+							<a href="https://github.com/kemichenassim"
+							   class="button large"
+							   target="_blank"
+							   rel="noopener">
+								Voir sur GitHub
+							</a>
+						</li>
 					</ul>
 				</article>
 
-				<!-- Posts -->
+				<!-- Cartes sans images -->
 				<section class="posts">
 
 					<article>
 						<header>
 							<span class="date">Approches</span>
-							<h2><a href="#">Méthodologie<br />& Pipeline</a></h2>
+							<h2>Méthodologie & Pipeline</h2>
 						</header>
 						<p>
 							Prétraitement textuel (minuscules, nettoyage, stopwords, lemmatisation),
-							puis vectorisation TF-IDF. Comparaison de trois approches : TF-IDF + réseau dense,
-							autoencodeur (réduction non-supervisée) et BERT (embeddings contextuels).
+							vectorisation TF-IDF, réseau dense, autoencodeur et BERT.
 						</p>
 					</article>
 
 					<article>
 						<header>
 							<span class="date">Dataset</span>
-							<h2><a href="#">SMS Spam Collection<br />Déséquilibre</a></h2>
+							<h2>SMS Spam Collection Déséquilibré</h2>
 						</header>
 						<p>
-							Dataset de 5 572 SMS (≈86.6% Ham, ≈13.4% Spam).
-							Le déséquilibre des classes peut biaiser un modèle vers la classe majoritaire,
-							donc l’évaluation ne doit pas se limiter à l’accuracy
-							(Recall et AUC-ROC sont essentiels).
+							5 572 SMS (86.6% Ham, 13.4% Spam).
+							Recall et AUC-ROC sont essentiels pour évaluer un modèle déséquilibré.
 						</p>
 					</article>
 
 					<article>
 						<header>
 							<span class="date">Résultats</span>
-							<h2><a href="#">Comparaison des modèles<br />Performance</a></h2>
+							<h2>Comparaison des modèles</h2>
 						</header>
 						<p>
-							TF-IDF offre un excellent rapport performance / simplicité.
+							TF-IDF offre un excellent compromis performance/simplicité.
 							BERT obtient la meilleure performance globale.
-							L’autoencodeur échoue à détecter les spams
-							(recall spam ≈ 0% malgré une accuracy trompeuse).
 						</p>
 					</article>
 
 					<article id="skills">
 						<header>
 							<span class="date">Compétences</span>
-							<h2><a href="#">Stack<br />& Outils</a></h2>
+							<h2>Stack & Outils</h2>
 						</header>
 						<p>
 							<strong>SQL</strong>, <strong>R</strong>,
-							<strong>JavaScript</strong>, <strong>HTML</strong>, <strong>Cloud</strong>.<br />
-							Analyse de données, préparation / nettoyage,
-							modélisation et évaluation (métriques).
+							<strong>JavaScript</strong>, <strong>HTML</strong>, <strong>Cloud</strong>.
 						</p>
 						<ul class="actions special">
-							<li><a href="https://github.com/kemichenassim" class="button" target="_blank" rel="noopener">Mes dépôts GitHub</a></li>
+							<li>
+								<a href="https://github.com/kemichenassim"
+								   class="button"
+								   target="_blank"
+								   rel="noopener">
+									Mes dépôts GitHub
+								</a>
+							</li>
 						</ul>
 					</article>
 
 					<article>
 						<header>
 							<span class="date">Profil</span>
-							<h2><a href="#">À propos<br />de moi</a></h2>
+							<h2>À propos de moi</h2>
 						</header>
 						<p>
 							Étudiant en science des données au Collège La Cité,
@@ -149,44 +170,33 @@
 						</p>
 					</article>
 
-					<article>
-						<header>
-							<span class="date">Contact</span>
-							<h2><a href="#contact" class="scrolly">Me joindre<br />rapidement</a></h2>
-						</header>
-						<p>
-							📧 <a href="mailto:kemichenassim486@gmail.com">kemichenassim486@gmail.com</a><br />
-							💻 <a href="https://github.com/kemichenassim" target="_blank" rel="noopener">github.com/kemichenassim</a>
-						</p>
-						<ul class="actions special">
-							<li><a href="mailto:kemichenassim486@gmail.com" class="button">Envoyer un email</a></li>
-						</ul>
-					</article>
-
 				</section>
 
 			</div>
 
-			<!-- Footer -->
+			<!-- Footer simplifié -->
 			<footer id="footer">
-	<section id="contact">
-		<h3>Contact</h3>
-		<p>
-			📧 <a href="mailto:kemichenassim486@gmail.com">
-			kemichenassim486@gmail.com</a><br />
-			💻 <a href="https://github.com/kemichenassim" target="_blank">
-			github.com/kemichenassim</a>
-		</p>
-	</section>
-</footer>
-
+				<section id="contact">
+					<h3>Contact</h3>
+					<p>
+						📧 <a href="mailto:kemichenassim486@gmail.com">
+						kemichenassim486@gmail.com</a><br />
+						💻 <a href="https://github.com/kemichenassim" target="_blank">
+						github.com/kemichenassim</a>
+					</p>
+				</section>
+			</footer>
 
 			<div id="copyright">
-				<ul><li>&copy; 2026 Kemiche Nassim</li><li>Design: HTML5 UP</li></ul>
+				<ul>
+					<li>&copy; 2026 Kemiche Nassim</li>
+					<li>Design: HTML5 UP</li>
+				</ul>
 			</div>
 
 		</div>
 
+		<!-- Scripts -->
 		<script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/jquery.scrollex.min.js"></script>
 		<script src="assets/js/jquery.scrolly.min.js"></script>
@@ -197,4 +207,3 @@
 
 	</body>
 </html>
-
