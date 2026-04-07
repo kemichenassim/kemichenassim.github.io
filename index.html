@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kemiche Nassim | Data Science Portfolio</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.7;
+        }
+        header {
+            background: linear-gradient(135deg, var(--dark), #1e293b);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+        header h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+        header .subtitle { 
+            color: #94a3b8; 
+            font-size: 1.1rem; 
+            margin-bottom: 1rem;
+        }
+        header .tagline {
+            background: rgba(37, 99, 235, 0.2);
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            color: #bfdbfe;
+        }
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
+        }
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+        }
+        .about-text { color: #334155; }
+        
+        /* Projects */
+        .project-card {
+            border-left: 4px solid var(--primary);
+            padding-left: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .project-card:last-child { margin-bottom: 0; }
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .project-title { font-size: 1.3rem; font-weight: 600; }
+        .project-links a {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.4rem 0.9rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+            transition: background 0.2s;
+        }
+        .project-links a:hover { background: var(--primary-dark); }
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 0.8rem 0;
+        }
+        .tag {
+            background: #e0e7ff;
+            color: #3730a3;
+            padding: 0.25rem 0.7rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        .project-content { color: #475569; }
+        .highlight {
+            background: #f1f5f9;
+            border-left: 3px solid var(--primary);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 6px 6px 0;
+            font-style: italic;
+            color: #334155;
+        }
+        
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+        }
+        .skill-category {
+            background: #f8fafc;
+            padding: 1.2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+        .skill-category h4 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+        .skill-list {
+            list-style: none;
+        }
+        .skill-list li {
+            padding: 0.3rem 0;
+            color: #475569;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+        .skill-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        /* Contact */
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--dark);
+            color: white;
+            padding: 0.7rem 1.3rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+        .contact-btn:hover { transform: translateY(-2px); }
+        .contact-btn.email { background: #ea4335; }
+        .contact-btn.github { background: #333; }
+        .contact-btn.web { background: var(--primary); }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8rem; }
+            .project-header { flex-direction: column; align-items: flex-start; }
+            .contact-links { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Kemiche Nassim</h1>
+    <p class="subtitle">Étudiant en science des données – Collège La Cité</p>
+    <span class="tagline">📊 Analyse • 🤖 Machine Learning • 🧠 Deep Learning • 🌐 NLP</span>
+</header>
+
+<div class="container">
+    
+    <!-- About -->
+    <section>
+        <h2>🧠 À propos de moi</h2>
+        <p class="about-text">
+            Je suis étudiant en science des données au Collège La Cité, passionné par la transformation des données brutes en informations exploitables. 
+            Je m'intéresse particulièrement à l'analyse de données, au traitement du texte (NLP) et aux modèles d'apprentissage automatique appliqués à des problématiques réelles.
+        </p>
+    </section>
+
+    <!-- Projects -->
+    <section>
+        <h2>🚀 Projets</h2>
+        
+        <!-- Mandelbrot Project -->
+        <div class="project-card">
+            <div class="project-header">
+                <div class="project-title">🔮 Mandelbrot Set Visualization</div>
+                <div class="project-links">
+                    <a href="https://kemichenassim.github.io/MandelbrotSet-vis/" target="_blank">🖥️ Live Demo</a>
+                    <a href="https://github.com/kemichenassim/MandelbrotSet-vis" target="_blank">💻 Code</a>
+                </div>
+            </div>
+            <div class="project-meta">
+                <span class="tag">WebGL</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Mathématiques</span>
+                <span class="tag">Visualisation</span>
+            </div>
+            <p class="project-content">
+                Un visualiseur de fractales haute performance développé en WebGL/JavaScript avec zoom fluide et colorisation lisse.
+            </p>
+            <ul class="project-content" style="margin: 0.8rem 0 0 1.5rem;">
+                <li>🔍 Zoom fluide avec interpolation mathématique (easing)</li>
+                <li>🌈 Colorisation lisse pour éliminer les bandes de couleur</li>
+                <li>🖱️ Navigation interactive : glisser pour déplacer, molette pour zoomer</li>
+                <li>⚡ Ajustement dynamique des itérations pour préserver les détails</li>
+            </ul>
+        </div>
+
+        <!-- SMS Spam Project -->
+        <div class="project-card">
+            <div class="project-header">
+                <div class="project-title">📩 Classification de SMS Spam</div>
+            </div>
+            <div class="project-meta">
+                <span class="tag">NLP</span>
+                <span class="tag">Python</span>
+                <span class="tag">BERT</span>
+                <span class="tag">Scikit-learn</span>
+                <span class="tag">TensorFlow</span>
+            </div>
+            <p class="project-content">
+                Système de classification automatique pour distinguer les SMS légitimes (*Ham*) des messages indésirables (*Spam*).
+            </p>
+            <div class="highlight">
+                📚 Leçon clé : L'accuracy seule est trompeuse sur un dataset déséquilibré. 
+                Les métriques comme le Recall et l'AUC-ROC sont essentielles.
+            </div>
+            <p class="project-content"><strong>Résultats :</strong></p>
+            <ul class="project-content" style="margin: 0.5rem 0 0 1.5rem;">
+                <li><strong>TF-IDF</strong> : très bon compromis performance/simplicité</li>
+                <li><strong>BERT</strong> : meilleure performance grâce à la compréhension sémantique</li>
+                <li><strong>Autoencodeur</strong> : échec sur la classe minoritaire (recall spam = 0%)</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section>
+        <h2>🧰 Compétences techniques</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h4>💻 Langages</h4>
+                <ul class="skill-list">
+                    <li>Python</li>
+                    <li>SQL</li>
+                    <li>R</li>
+                    <li>JavaScript</li>
+                    <li>HTML/CSS</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h4>🤖 Data & IA</h4>
+                <ul class="skill-list">
+                    <li>Pandas, NumPy</li>
+                    <li>Scikit-learn</li>
+                    <li>TensorFlow, PyTorch</li>
+                    <li>NLP / Traitement texte</li>
+                    <li>Visualisation (Plotly, Matplotlib)</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h4>🛠️ Outils</h4>
+                <ul class="skill-list">
+                    <li>Git / GitHub</li>
+                    <li>Jupyter Notebook</li>
+                    <li>VS Code</li>
+                    <li>WebGL (bases)</li>
+                    <li>Notions Cloud</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section>
+        <h2>🌐 Contact & Liens</h2>
+        <div class="contact-links">
+            <a href="https://github.com/kemichenassim" target="_blank" class="contact-btn github">
+                💻 GitHub Profile
+            </a>
+            <a href="mailto:kemichenassim486@gmail.com" class="contact-btn email">
+                📧 kemichenassim486@gmail.com
+            </a>
+            <a href="https://kemichenassim.github.io/" target="_blank" class="contact-btn web">
+                🌐 Portfolio Web
+            </a>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <p>© 2024 Kemiche Nassim • "Les données ne parlent pas d'elles-mêmes — c'est à nous de leur donner une voix." 🎙️📊</p>
+</footer>
+
+</body>
+</html>
