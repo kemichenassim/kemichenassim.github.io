@@ -4,323 +4,729 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kemiche Nassim | Data Science Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --dark: #0f172a;
-            --light: #f8fafc;
-            --gray: #64748b;
-            --card-bg: #ffffff;
-            --border: #e2e8f0;
+            --primary: #6366f1;
+            --primary-glow: rgba(99, 102, 241, 0.5);
+            --secondary: #ec4899;
+            --dark: #0f0f1a;
+            --darker: #090912;
+            --light: #f1f5f9;
+            --card-bg: rgba(30, 30, 50, 0.7);
+            --border: rgba(255, 255, 255, 0.1);
+            --glass: rgba(255, 255, 255, 0.05);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 20px; height: 20px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: var(--transition);
+            z-index: 9999;
+            mix-blend-mode: difference;
+        }
+        .cursor-dot {
+            position: fixed;
+            width: 6px; height: 6px;
+            background: var(--secondary);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+        }
+        .cursor.hover { transform: translate(-50%, -50%) scale(2.5); background: rgba(99,102,241,0.2); border-color: transparent; }
+        
+        /* Animated Background */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--light);
-            color: var(--dark);
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--darker);
+            color: var(--light);
             line-height: 1.7;
+            overflow-x: hidden;
+            perspective: 1000px;
         }
+        #particles-js {
+            position: fixed;
+            width: 100%; height: 100%;
+            top: 0; left: 0;
+            z-index: -2;
+        }
+        .bg-gradient {
+            position: fixed;
+            width: 200%; height: 200%;
+            top: -50%; left: -50%;
+            background: radial-gradient(circle at 30% 30%, rgba(99,102,241,0.15), transparent 40%),
+                        radial-gradient(circle at 70% 70%, rgba(236,72,153,0.1), transparent 40%),
+                        radial-gradient(circle at 50% 50%, rgba(16,185,129,0.08), transparent 50%);
+            animation: gradientMove 20s ease-in-out infinite;
+            z-index: -1;
+        }
+        @keyframes gradientMove {
+            0%, 100% { transform: translate(0,0) rotate(0deg); }
+            25% { transform: translate(2%,2%) rotate(0.5deg); }
+            50% { transform: translate(0,4%) rotate(0deg); }
+            75% { transform: translate(-2%,2%) rotate(-0.5deg); }
+        }
+
+        /* Floating 3D Shapes */
+        .floating-shape {
+            position: fixed;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            opacity: 0.15;
+            animation: float 15s ease-in-out infinite;
+            z-index: -1;
+            filter: blur(20px);
+        }
+        .shape-1 { width: 300px; height: 300px; top: 10%; left: 5%; animation-delay: 0s; }
+        .shape-2 { width: 200px; height: 200px; bottom: 15%; right: 10%; animation-delay: -5s; }
+        .shape-3 { width: 150px; height: 150px; top: 60%; left: 20%; animation-delay: -10s; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            50% { transform: translateY(-30px) rotate(180deg) scale(1.1); }
+        }
+
+        /* Header / Hero */
         header {
-            background: linear-gradient(135deg, var(--dark), #1e293b);
-            color: white;
-            padding: 3rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
         }
-        header h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
-        header .subtitle { 
-            color: #94a3b8; 
-            font-size: 1.1rem; 
+        .hero-content {
+            max-width: 900px;
+            z-index: 10;
+            animation: fadeInUp 1s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        header h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
             margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px var(--primary-glow);
+            animation: textGlow 3s ease-in-out infinite alternate;
         }
-        header .tagline {
-            background: rgba(37, 99, 235, 0.2);
-            display: inline-block;
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.95rem;
-            color: #bfdbfe;
+        @keyframes textGlow {
+            from { text-shadow: 0 0 20px var(--primary-glow); }
+            to { text-shadow: 0 0 60px var(--primary-glow), 0 0 100px var(--secondary); }
         }
+        .subtitle {
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+        .tagline {
+            display: inline-flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+        }
+        .tag {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        .tag:nth-child(2) { animation-delay: 0.2s; }
+        .tag:nth-child(3) { animation-delay: 0.4s; }
+        .tag:nth-child(4) { animation-delay: 0.6s; }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 var(--primary-glow); }
+            50% { transform: scale(1.05); box-shadow: 0 0 20px 5px var(--primary-glow); }
+        }
+        .tag:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px var(--primary-glow);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            opacity: 0.7;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(15px); }
+        }
+        .scroll-indicator i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        /* Container & Sections */
         .container {
-            max-width: 950px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 2rem 1.5rem;
+            padding: 4rem 2rem;
         }
         section {
             background: var(--card-bg);
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
             border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            transform-style: preserve-3d;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        section:hover {
+            transform: translateY(-5px) rotateX(2deg);
+            box-shadow: 0 30px 80px rgba(99,102,241,0.25);
+            border-color: var(--primary);
         }
         h2 {
-            color: var(--primary);
-            border-bottom: 3px solid var(--primary);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-            font-size: 1.6rem;
+            color: var(--light);
+            font-size: 2rem;
+            margin-bottom: 1.8rem;
+            position: relative;
+            display: inline-block;
         }
-        .about-text { color: #334155; }
-        
-        /* Projects */
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+            animation: shine 2s ease-in-out infinite;
+        }
+        @keyframes shine {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Projects - 3D Cards */
         .project-card {
-            border-left: 4px solid var(--primary);
-            padding-left: 1.5rem;
+            border-left: 4px solid transparent;
+            border-image: linear-gradient(180deg, var(--primary), var(--secondary)) 1;
+            padding: 1.8rem;
             margin-bottom: 2rem;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.03);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
         }
-        .project-card:last-child { margin-bottom: 0; }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: 0.6s;
+        }
+        .project-card:hover::before { left: 100%; }
+        .project-card:hover {
+            transform: translateZ(20px) scale(1.02);
+            border-left-color: var(--secondary);
+            box-shadow: 0 15px 50px rgba(236,72,153,0.2);
+        }
         .project-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
         }
-        .project-title { font-size: 1.3rem; font-weight: 600; }
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--light);
+        }
         .project-links a {
-            display: inline-block;
-            background: var(--primary);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 0.4rem 0.9rem;
-            border-radius: 6px;
+            padding: 0.5rem 1.1rem;
+            border-radius: 12px;
             text-decoration: none;
             font-size: 0.9rem;
-            margin-right: 0.5rem;
-            transition: background 0.2s;
+            font-weight: 500;
+            transition: var(--transition);
+            box-shadow: 0 5px 20px var(--primary-glow);
         }
-        .project-links a:hover { background: var(--primary-dark); }
+        .project-links a:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 40px var(--primary-glow);
+        }
         .project-meta {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 0.8rem 0;
-        }
-        .tag {
-            background: #e0e7ff;
-            color: #3730a3;
-            padding: 0.25rem 0.7rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-        .project-content { color: #475569; }
-        .highlight {
-            background: #f1f5f9;
-            border-left: 3px solid var(--primary);
-            padding: 1rem;
+            gap: 0.6rem;
             margin: 1rem 0;
-            border-radius: 0 6px 6px 0;
-            font-style: italic;
-            color: #334155;
         }
-        
-        /* Skills Grid */
+        .tag-skill {
+            background: rgba(99,102,241,0.15);
+            color: #a5b4fc;
+            padding: 0.3rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(99,102,241,0.3);
+            transition: var(--transition);
+        }
+        .tag-skill:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px var(--primary-glow);
+        }
+        .project-content { color: #cbd5e1; margin-top: 0.8rem; }
+        .highlight {
+            background: rgba(16,185,129,0.1);
+            border-left: 3px solid #10b981;
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
+            color: #a7f3d0;
+        }
+
+        /* Skills - 3D Grid */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.2rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
         }
         .skill-category {
-            background: #f8fafc;
-            padding: 1.2rem;
-            border-radius: 8px;
+            background: var(--glass);
+            padding: 1.5rem;
+            border-radius: 16px;
             border: 1px solid var(--border);
+            transition: var(--transition);
+            transform-style: preserve-3d;
+        }
+        .skill-category:hover {
+            transform: translateZ(15px) rotateX(3deg);
+            background: rgba(99,102,241,0.1);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(99,102,241,0.2);
         }
         .skill-category h4 {
             color: var(--primary);
-            margin-bottom: 0.8rem;
-            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
-        .skill-list {
-            list-style: none;
-        }
+        .skill-list { list-style: none; }
         .skill-list li {
-            padding: 0.3rem 0;
-            color: #475569;
+            padding: 0.5rem 0;
+            color: #94a3b8;
             position: relative;
-            padding-left: 1.2rem;
+            padding-left: 1.5rem;
+            transition: var(--transition);
+        }
+        .skill-list li:hover {
+            color: var(--light);
+            transform: translateX(5px);
         }
         .skill-list li::before {
-            content: "✓";
+            content: "▹";
             position: absolute;
             left: 0;
-            color: var(--primary);
+            color: var(--secondary);
             font-weight: bold;
+            animation: bounceDot 1.5s ease-in-out infinite;
         }
-        
-        /* Contact */
+        .skill-list li:nth-child(2)::before { animation-delay: 0.2s; }
+        .skill-list li:nth-child(3)::before { animation-delay: 0.4s; }
+        @keyframes bounceDot {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(3px); }
+        }
+
+        /* Contact - Neon Buttons */
         .contact-links {
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 1.2rem;
+            justify-content: center;
         }
         .contact-btn {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            background: var(--dark);
-            color: white;
-            padding: 0.7rem 1.3rem;
-            border-radius: 8px;
+            gap: 0.6rem;
+            padding: 0.9rem 1.8rem;
+            border-radius: 16px;
             text-decoration: none;
-            transition: transform 0.2s;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: var(--glass);
+            color: var(--light);
         }
-        .contact-btn:hover { transform: translateY(-2px); }
-        .contact-btn.email { background: #ea4335; }
-        .contact-btn.github { background: #333; }
-        .contact-btn.web { background: var(--primary); }
-        
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        .contact-btn:hover::before { left: 100%; }
+        .contact-btn:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 15px 50px var(--primary-glow);
+        }
+        .contact-btn.github { background: linear-gradient(135deg, #333, #1a1a1a); }
+        .contact-btn.email { background: linear-gradient(135deg, #ea4335, #c13528); }
+        .contact-btn.web { background: linear-gradient(135deg, var(--primary), #4f46e5); }
+        .contact-btn.linkedin { background: linear-gradient(135deg, #0a66c2, #004182); }
+
+        /* Footer */
         footer {
             text-align: center;
-            padding: 2rem;
-            color: var(--gray);
-            font-size: 0.9rem;
+            padding: 3rem 2rem;
+            color: #64748b;
+            font-size: 0.95rem;
+            margin-top: 2rem;
+            position: relative;
         }
-        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 80%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+        }
+        .quote {
+            font-style: italic;
+            color: #94a3b8;
+            margin-top: 1rem;
+            animation: fadeIn 2s ease-out;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            header h1 { font-size: 1.8rem; }
             .project-header { flex-direction: column; align-items: flex-start; }
-            .contact-links { flex-direction: column; }
+            .contact-links { flex-direction: column; align-items: center; }
+            section { padding: 2rem 1.5rem; }
+            .cursor, .cursor-dot { display: none; } /* Disable custom cursor on touch */
+            * { cursor: auto; }
         }
+
+        /* Typing Animation */
+        .typing::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+            margin-left: 3px;
+            color: var(--secondary);
+        }
+        @keyframes blink { 50% { opacity: 0; } }
     </style>
 </head>
 <body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
 
-<header>
-    <h1>Kemiche Nassim</h1>
-    <p class="subtitle">Étudiant en science des données – Collège La Cité</p>
-    <span class="tagline">📊 Analyse • 🤖 Machine Learning • 🧠 Deep Learning • 🌐 NLP</span>
-</header>
+    <!-- Animated Background -->
+    <div class="bg-gradient"></div>
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+    <div class="floating-shape shape-3"></div>
+    <div id="particles-js"></div>
 
-<div class="container">
-    
-    <!-- About -->
-    <section>
-        <h2>🧠 À propos de moi</h2>
-        <p class="about-text">
-            Je suis étudiant en science des données au Collège La Cité, passionné par la transformation des données brutes en informations exploitables. 
-            Je m'intéresse particulièrement à l'analyse de données, au traitement du texte (NLP) et aux modèles d'apprentissage automatique appliqués à des problématiques réelles.
-        </p>
-    </section>
+    <!-- Hero Section -->
+    <header>
+        <div class="hero-content">
+            <h1>Kemiche Nassim</h1>
+            <p class="subtitle">Étudiant en science des données – Collège La Cité</p>
+            <div class="tagline">
+                <span class="tag">📊 Analyse de Données</span>
+                <span class="tag">🤖 Machine Learning</span>
+                <span class="tag">🧠 Deep Learning</span>
+                <span class="tag">🌐 NLP</span>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </header>
 
-    <!-- Projects -->
-    <section>
-        <h2>🚀 Projets</h2>
-        
-        <!-- Mandelbrot Project -->
-        <div class="project-card">
-            <div class="project-header">
-                <div class="project-title">🔮 Mandelbrot Set Visualization</div>
-                <div class="project-links">
-                    <a href="https://kemichenassim.github.io/MandelbrotSet-vis/" target="_blank">🖥️ Live Demo</a>
-                    <a href="https://github.com/kemichenassim/MandelbrotSet-vis" target="_blank">💻 Code</a>
+    <div class="container">
+        <!-- About -->
+        <section class="animate-on-scroll">
+            <h2>🧠 À propos de moi</h2>
+            <p class="project-content">
+                Je suis étudiant en science des données au Collège La Cité, passionné par la transformation des données brutes en informations exploitables. 
+                Je m'intéresse particulièrement à l'analyse de données, au traitement du texte (NLP) et aux modèles d'apprentissage automatique appliqués à des problématiques réelles.
+            </p>
+        </section>
+
+        <!-- Projects -->
+        <section class="animate-on-scroll">
+            <h2>🚀 Projets</h2>
+            
+            <!-- Mandelbrot -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">🔮 Mandelbrot Set Visualization</div>
+                    <div class="project-links">
+                        <a href="https://kemichenassim.github.io/MandelbrotSet-vis/" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                        <a href="https://github.com/kemichenassim/MandelbrotSet-vis" target="_blank">
+                            <i class="fab fa-github"></i> Code
+                        </a>
+                    </div>
+                </div>
+                <div class="project-meta">
+                    <span class="tag-skill">WebGL</span>
+                    <span class="tag-skill">JavaScript</span>
+                    <span class="tag-skill">Mathématiques</span>
+                    <span class="tag-skill">Visualisation Interactive</span>
+                </div>
+                <p class="project-content">
+                    Un visualiseur de fractales haute performance avec zoom fluide, colorisation lisse et navigation intuitive.
+                </p>
+                <ul class="project-content" style="margin: 0.8rem 0 0 1.5rem;">
+                    <li>🔍 Zoom fluide avec interpolation mathématique</li>
+                    <li>🌈 Smooth coloring pour éliminer les bandes</li>
+                    <li>🖱️ Drag-to-pan & scroll-to-zoom</li>
+                    <li>⚡ Itérations dynamiques pour détails profonds</li>
+                </ul>
+            </div>
+
+            <!-- SMS Spam -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">📩 Classification de SMS Spam</div>
+                </div>
+                <div class="project-meta">
+                    <span class="tag-skill">NLP</span>
+                    <span class="tag-skill">Python</span>
+                    <span class="tag-skill">BERT</span>
+                    <span class="tag-skill">Scikit-learn</span>
+                    <span class="tag-skill">TensorFlow</span>
+                </div>
+                <p class="project-content">
+                    Système de classification automatique pour distinguer les SMS légitimes (*Ham*) des messages indésirables (*Spam*).
+                </p>
+                <div class="highlight">
+                    📚 Leçon clé : L'accuracy seule est trompeuse sur un dataset déséquilibré. 
+                    Les métriques comme le Recall et l'AUC-ROC sont essentielles.
+                </div>
+                <p class="project-content"><strong>Résultats :</strong></p>
+                <ul class="project-content" style="margin: 0.5rem 0 0 1.5rem;">
+                    <li><strong>TF-IDF</strong> : très bon compromis performance/simplicité</li>
+                    <li><strong>BERT</strong> : meilleure performance sémantique</li>
+                    <li><strong>Autoencodeur</strong> : échec sur la classe minoritaire</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="animate-on-scroll">
+            <h2>🧰 Compétences techniques</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4><i class="fas fa-code"></i> Langages</h4>
+                    <ul class="skill-list">
+                        <li>Python</li>
+                        <li>SQL</li>
+                        <li>R</li>
+                        <li>JavaScript</li>
+                        <li>HTML/CSS</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4><i class="fas fa-brain"></i> Data & IA</h4>
+                    <ul class="skill-list">
+                        <li>Pandas, NumPy</li>
+                        <li>Scikit-learn</li>
+                        <li>TensorFlow, PyTorch</li>
+                        <li>NLP / Traitement texte</li>
+                        <li>Visualisation (Plotly, Matplotlib)</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4><i class="fas fa-tools"></i> Outils</h4>
+                    <ul class="skill-list">
+                        <li>Git / GitHub</li>
+                        <li>Jupyter Notebook</li>
+                        <li>VS Code</li>
+                        <li>WebGL (bases)</li>
+                        <li>Notions Cloud</li>
+                    </ul>
                 </div>
             </div>
-            <div class="project-meta">
-                <span class="tag">WebGL</span>
-                <span class="tag">JavaScript</span>
-                <span class="tag">Mathématiques</span>
-                <span class="tag">Visualisation</span>
-            </div>
-            <p class="project-content">
-                Un visualiseur de fractales haute performance développé en WebGL/JavaScript avec zoom fluide et colorisation lisse.
-            </p>
-            <ul class="project-content" style="margin: 0.8rem 0 0 1.5rem;">
-                <li>🔍 Zoom fluide avec interpolation mathématique (easing)</li>
-                <li>🌈 Colorisation lisse pour éliminer les bandes de couleur</li>
-                <li>🖱️ Navigation interactive : glisser pour déplacer, molette pour zoomer</li>
-                <li>⚡ Ajustement dynamique des itérations pour préserver les détails</li>
-            </ul>
-        </div>
+        </section>
 
-        <!-- SMS Spam Project -->
-        <div class="project-card">
-            <div class="project-header">
-                <div class="project-title">📩 Classification de SMS Spam</div>
+        <!-- Contact -->
+        <section class="animate-on-scroll">
+            <h2>🌐 Contact & Liens</h2>
+            <div class="contact-links">
+                <a href="https://github.com/kemichenassim" target="_blank" class="contact-btn github">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="mailto:kemichenassim486@gmail.com" class="contact-btn email">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+                <a href="https://kemichenassim.github.io/" target="_blank" class="contact-btn web">
+                    <i class="fas fa-globe"></i> Portfolio
+                </a>
+                <a href="#" class="contact-btn linkedin">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
             </div>
-            <div class="project-meta">
-                <span class="tag">NLP</span>
-                <span class="tag">Python</span>
-                <span class="tag">BERT</span>
-                <span class="tag">Scikit-learn</span>
-                <span class="tag">TensorFlow</span>
-            </div>
-            <p class="project-content">
-                Système de classification automatique pour distinguer les SMS légitimes (*Ham*) des messages indésirables (*Spam*).
-            </p>
-            <div class="highlight">
-                📚 Leçon clé : L'accuracy seule est trompeuse sur un dataset déséquilibré. 
-                Les métriques comme le Recall et l'AUC-ROC sont essentielles.
-            </div>
-            <p class="project-content"><strong>Résultats :</strong></p>
-            <ul class="project-content" style="margin: 0.5rem 0 0 1.5rem;">
-                <li><strong>TF-IDF</strong> : très bon compromis performance/simplicité</li>
-                <li><strong>BERT</strong> : meilleure performance grâce à la compréhension sémantique</li>
-                <li><strong>Autoencodeur</strong> : échec sur la classe minoritaire (recall spam = 0%)</li>
-            </ul>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <!-- Skills -->
-    <section>
-        <h2>🧰 Compétences techniques</h2>
-        <div class="skills-grid">
-            <div class="skill-category">
-                <h4>💻 Langages</h4>
-                <ul class="skill-list">
-                    <li>Python</li>
-                    <li>SQL</li>
-                    <li>R</li>
-                    <li>JavaScript</li>
-                    <li>HTML/CSS</li>
-                </ul>
-            </div>
-            <div class="skill-category">
-                <h4>🤖 Data & IA</h4>
-                <ul class="skill-list">
-                    <li>Pandas, NumPy</li>
-                    <li>Scikit-learn</li>
-                    <li>TensorFlow, PyTorch</li>
-                    <li>NLP / Traitement texte</li>
-                    <li>Visualisation (Plotly, Matplotlib)</li>
-                </ul>
-            </div>
-            <div class="skill-category">
-                <h4>🛠️ Outils</h4>
-                <ul class="skill-list">
-                    <li>Git / GitHub</li>
-                    <li>Jupyter Notebook</li>
-                    <li>VS Code</li>
-                    <li>WebGL (bases)</li>
-                    <li>Notions Cloud</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+    <footer>
+        <p>© 2024 Kemiche Nassim</p>
+        <p class="quote">"Les données ne parlent pas d'elles-mêmes — c'est à nous de leur donner une voix." 🎙️📊</p>
+    </footer>
 
-    <!-- Contact -->
-    <section>
-        <h2>🌐 Contact & Liens</h2>
-        <div class="contact-links">
-            <a href="https://github.com/kemichenassim" target="_blank" class="contact-btn github">
-                💻 GitHub Profile
-            </a>
-            <a href="mailto:kemichenassim486@gmail.com" class="contact-btn email">
-                📧 kemichenassim486@gmail.com
-            </a>
-            <a href="https://kemichenassim.github.io/" target="_blank" class="contact-btn web">
-                🌐 Portfolio Web
-            </a>
-        </div>
-    </section>
+    <!-- Particles.js Library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <script>
+        // ========== PARTICLES CONFIG ==========
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 60, density: { enable: true, value_area: 800 } },
+                color: { value: "#6366f1" },
+                shape: { type: "circle" },
+                opacity: { value: 0.3, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#6366f1", opacity: 0.15, width: 1 },
+                move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out", bounce: false }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" }, resize: true },
+                modes: { grab: { distance: 140, line_linked: { opacity: 0.4 } }, push: { particles_nb: 4 } }
+            },
+            retina_detect: true
+        });
 
-</div>
+        // ========== CUSTOM CURSOR ==========
+        const cursor = document.querySelector('.cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+        });
 
-<footer>
-    <p>© 2024 Kemiche Nassim • "Les données ne parlent pas d'elles-mêmes — c'est à nous de leur donner une voix." 🎙️📊</p>
-</footer>
+        document.querySelectorAll('a, button, .tag, .project-card, .skill-category, .contact-btn').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
 
+        // ========== SCROLL ANIMATIONS ==========
+        const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        // ========== 3D TILT EFFECT ON CARDS ==========
+        document.querySelectorAll('.project-card, .skill-category').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 15;
+                const rotateY = (centerX - x) / 15;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+            });
+        });
+
+        // ========== SMOOTH SCROLL FOR ANCHOR LINKS ==========
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ========== TYPEWRITER EFFECT FOR TAGLINE (Optional Enhancement) ==========
+        // Uncomment below to enable typing animation on load
+        /*
+        const tagline = document.querySelector('.tagline');
+        const tags = Array.from(tagline.querySelectorAll('.tag'));
+        let currentIndex = 0;
+        
+        function typeNextTag() {
+            if (currentIndex < tags.length) {
+                tags[currentIndex].classList.add('typing');
+                setTimeout(() => {
+                    tags[currentIndex].classList.remove('typing');
+                    currentIndex++;
+                    setTimeout(typeNextTag, 300);
+                }, 1500);
+            }
+        }
+        setTimeout(typeNextTag, 1000);
+        */
+    </script>
 </body>
 </html>
